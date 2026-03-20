@@ -11,21 +11,19 @@
     }
 
     * { box-sizing: border-box; }
-
-   body { 
+body { 
     margin: 0; 
-    /* Fondo con una capa de color negro suave (0.5) para que las letras blancas resalten */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), var(--bg-horror);
+    /* Capa de color para que el texto resalte (puedes ajustar el 0.3 si la quieres más clara) */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--bg-horror);
     
-    /* --- AQUÍ ESTÁ LA SOLUCIÓN AL ZOOM Y EL MOSAICO --- */
-    background-repeat: no-repeat;  /* Solo una imagen, no se repite */
-    background-size: contain;      /* La imagen original se adapta a la pantalla sin cortarse */
-    background-position: center;   /* Centrada en la pantalla */
-    background-color: #000;       /* Negro puro en los bordes vacíos si la imagen es pequeña */
-    background-attachment: fixed;  /* Se queda quieta al hacer scroll */
-    /* -------------------------------------------------- */
+    /* --- CONFIGURACIÓN PARA ESTIRAR SIN CORTAR --- */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%; /* Estira la imagen a todo lo ancho y alto */
+    background-attachment: fixed; /* La imagen no se mueve al bajar */
+    /* --------------------------------------------- */
 
-    color: #fff; /* Letras blancas puras para máximo contraste */
+    color: #fff; 
     font-family: 'Orbitron', sans-serif; 
     height: 100vh; 
     display: flex; 
