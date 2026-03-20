@@ -1,4 +1,4 @@
- <style>
+ 
     :root {
         --primary: #ffffff; /* Blanco puro para resaltar */
         --secondary: #b0b0b0; /* Gris claro para info secundaria */
@@ -138,4 +138,3 @@
         position: fixed; bottom: 25px; left: 25px; 
         background: #111; border: 1px solid #fff;
     }
-</style>
