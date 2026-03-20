@@ -21,16 +21,16 @@
 
    body { 
     margin: 0; 
-    /* Fondo con una capa de color negro muy suave (0.4) para que las letras blancas resalten */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), var(--bg-horror);
-    background-color: #000; /* Fondo negro puro si la imagen tarda en cargar */
+    /* Fondo con una capa de color negro suave (0.5) para que las letras blancas resalten */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), var(--bg-horror);
     
-    /* --- AQUÍ ESTÁ LA SOLUCIÓN AL MOSAICO Y LA OSCURIDAD --- */
-    background-repeat: no-repeat; /* Solo una imagen, no se repite */
-    background-size: cover;      /* Ocupa todo el ancho y alto, se estira */
-    background-position: center;  /* Centrada en la pantalla */
-    background-attachment: fixed; /* Se queda quieta al hacer scroll */
-    /* ----------------------------------------------------- */
+    /* --- AQUÍ ESTÁ LA SOLUCIÓN AL ZOOM Y EL MOSAICO --- */
+    background-repeat: no-repeat;  /* Solo una imagen, no se repite */
+    background-size: contain;      /* La imagen original se adapta a la pantalla sin cortarse */
+    background-position: center;   /* Centrada en la pantalla */
+    background-color: #000;       /* Negro puro en los bordes vacíos si la imagen es pequeña */
+    background-attachment: fixed;  /* Se queda quieta al hacer scroll */
+    /* -------------------------------------------------- */
 
     color: #fff; /* Letras blancas puras para máximo contraste */
     font-family: 'Orbitron', sans-serif; 
