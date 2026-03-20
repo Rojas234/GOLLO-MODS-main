@@ -1,277 +1,183 @@
- 
-    :root {
-        --primary: #ffffff; /* Blanco puro para resaltar */
-        --secondary: #b0b0b0; /* Gris claro para info secundaria */
-        --bg-deep: #000000; /* Negro absoluto */
-        --glass: rgba(255, 255, 255, 0.05); /* Cristal sutil */
-        --border: rgba(255, 255, 255, 0.2); /* Bordes grises */
-        --bg-horror: url('https://i.postimg.cc/SKmXbk90/icono-server-gollo.webp');
-    }
+:root {
+    --primary: #ffffff; /* Blanco puro para resaltar */
+    --secondary: #b0b0b0; /* Gris claro para info secundaria */
+    --bg-deep: #000000; /* Negro absoluto */
+    --glass: rgba(255, 255, 255, 0.05); /* Cristal sutil */
+    --border: rgba(255, 255, 255, 0.2); /* Bordes grises */
+    --bg-horror: url('https://i.postimg.cc/SKmXbk90/icono-server-gollo.webp');
+}
 
-    * { box-sizing: border-box; }
+* { box-sizing: border-box; }
 
-    body { 
-        margin: 0; 
-        background-color: var(--bg-deep); 
-        background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), var(--bg-horror);
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-position: center;
-        background-attachment: fixed;
-        color: #f0f0f0; 
-        font-family: 'Orbitron', sans-serif; 
-        height: 100vh; 
-        display: flex; 
-        overflow: hidden; 
-    }
+body { 
+    margin: 0; 
+    background-color: var(--bg-deep); 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), var(--bg-horror);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    background-attachment: fixed;
+    color: #f0f0f0; 
+    font-family: 'Orbitron', sans-serif; 
+    height: 100vh; 
+    display: flex; 
+    overflow: hidden; 
+}
 
-    /* BARRA LATERAL GRIS OSCURO */
-    nav { 
-        width: 110px; 
-        background: rgba(15, 15, 15, 0.9); 
-        border-right: 1px solid var(--border); 
-        display: flex; 
-        flex-direction: column; 
-        align-items: center; 
-        padding: 30px 0; 
-        gap: 20px; 
-        backdrop-filter: blur(20px); 
-        z-index: 10; 
-    }
+/* BARRA LATERAL */
+nav { 
+    width: 110px; 
+    background: rgba(15, 15, 15, 0.9); 
+    border-right: 1px solid var(--border); 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    padding: 30px 0; 
+    gap: 20px; 
+    backdrop-filter: blur(20px); 
+    z-index: 10; 
+}
 
-    .nav-icon { 
-        width: 85px; 
-        height: 55px; 
-        background: var(--glass); 
-        border: 1px solid var(--border); 
-        border-radius: 12px; 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        cursor: pointer; 
-        transition: 0.4s; 
-        font-size: 9px; 
-        font-weight: 900;
-        color: #888; 
-        text-align: center; 
-    }
+.nav-icon { 
+    width: 85px; 
+    height: 55px; 
+    background: var(--glass); 
+    border: 1px solid var(--border); 
+    border-radius: 12px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer; 
+    transition: 0.4s; 
+    font-size: 9px; 
+    font-weight: 900;
+    color: #888; 
+    text-align: center; 
+}
 
-    .nav-icon:hover, .nav-icon.active { 
-        background: var(--primary); 
-        color: #000; /* Texto negro sobre fondo blanco */
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); 
-        border-color: #fff; 
-    }
+.nav-icon:hover, .nav-icon.active { 
+    background: var(--primary); 
+    color: #000; 
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); 
+    border-color: #fff; 
+}
 
-    main { flex: 1; padding: 40px; overflow-y: auto; }
+main { flex: 1; padding: 40px; overflow-y: auto; }
 
-    /* LOGO BLANCO CON SOMBRA NEGRA */
-    .logo-v3 { 
-        font-size: 3.5rem; 
-        font-weight: 900; 
-        color: #fff;
-        text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
-        letter-spacing: -2px;
-    }
+/* LOGO Y TITULOS */
+.logo-v3 { 
+    font-size: 3.5rem; 
+    font-weight: 900; 
+    color: #fff;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
+    letter-spacing: -2px;
+}
 
-    .version-tag { font-size: 11px; color: var(--secondary); letter-spacing: 5px; margin-bottom: 40px; }
+.version-tag { font-size: 11px; color: var(--secondary); letter-spacing: 5px; margin-bottom: 40px; }
 
-    .page-content { display: none; animation: fadeIn 0.6s ease; }
-    .page-content.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-/* Rejillas más angostas y centradas */
+.page-content { display: none; animation: fadeIn 0.6s ease; }
+.page-content.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* REJILLAS (GRIDS) */
 .staff-grid, .aportes-grid, .datas-grid { 
     display: grid; 
-    /* Cambiamos el mínimo de 300px a 260px para que sean menos anchas */
     grid-template-columns: repeat(auto-fill, minmax(260px, 320px)); 
     gap: 20px; 
     margin-top: 30px;
     padding-bottom: 50px;
-    justify-content: center; /* Centra las tarjetas en la pantalla */
+    justify-content: center; 
 }
 
-/* Ajuste opcional para que las tarjetas no se estiren al infinito */
+/* TARJETAS (CARDS) */
 .card { 
-    max-width: 320px; /* Limita el ancho máximo de cada recuadro */
-    margin: 0 auto;  /* Centra la tarjeta dentro de su espacio */
+    max-width: 320px; 
+    margin: 0 auto;
     background: rgba(20, 20, 20, 0.85); 
     border: 1px solid rgba(255, 255, 255, 0.1); 
     border-radius: 12px; 
     padding: 20px; 
     transition: all 0.3s ease; 
     backdrop-filter: blur(10px);
-}
-
-/* --- ESTILO PARA IMÁGENES DE PERFIL DE STAFF --- */
-.staff-img-container {
-    width: 100px;           /* Ancho fijo */
-    height: 100px;          /* Alto fijo (igual al ancho para que sea un cuadrado perfecto) */
-    border-radius: 50%;     /* Hace el contenedor circular */
-    border: 3px solid #fff; /* Borde blanco grueso */
-    margin: 0 auto 15px;    /* Centra horizontalmente (0 auto) y da espacio abajo (15px) */
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2); /* Sombra suave para resaltar */
-    
-    /* Configuración para la imagen de fondo */
-    background-size: cover;       /* Cubre todo el contenedor sin estirarse */
-    background-position: center;  /* Centra la imagen dentro del círculo */
-    background-repeat: no-repeat;
-    display: block;               /* Asegura que el margen auto funcione */
-}
-
-/* Opcional: Centrar el nombre y rango en la tarjeta */
-.staff-card-content {
-    text-align: center;
-}
-    .card:hover { 
-        border-color: #fff; 
-        background: rgba(40, 40, 40, 0.9);
-        box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-    }
-
-    /* BOTÓN DE DESCARGA NEGRO Y BLANCO */
-    .btn-dl { 
-        display: block; width: 100%; padding: 15px; 
-        background: #fff; 
-        color: #000; 
-        text-align: center; 
-        text-decoration: none; 
-        font-size: 0.85rem; 
-        font-weight: 900; 
-        border-radius: 8px; 
-        transition: 0.3s; 
-    }
-
-    .btn-dl:hover { 
-        background: #ccc;
-        transform: scale(1.02);
-    }
-
-    .download-badge { 
-        position: absolute; top: 15px; right: 15px; 
-        background: #222; 
-        border: 1px solid #444; 
-        color: #fff; 
-        padding: 5px 12px; 
-        border-radius: 5px; 
-        font-size: 0.65rem; 
-    }
-
-    .staff-img { 
-        border: 2px solid #fff; 
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); 
-    }
-
-    .info-row { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 8px; }
-    .label { color: #888; font-size: 0.7rem; }
-    .value { color: #fff; font-size: 0.85rem; }
-
-    #music-container {
-        position: fixed; bottom: 25px; left: 25px; 
-        background: #111; border: 1px solid #fff;
-    }
-
-    /* --- ESTILO EXÓTICO PARA TARJETAS DE STAFF --- */
-
-.staff-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 340px)); /* Ancho ideal, no muy anchas */
-    gap: 30px;
-    margin-top: 40px;
-    justify-content: center;
-    padding-bottom: 60px;
-}
-
-/* Base de la Tarjeta Estilo Glassmorphism Gótico */
-.card-staff {
-    background: rgba(10, 10, 10, 0.6); /* Fondo ultra oscuro y traslúcido */
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Borde casi invisible */
-    border-radius: 20px; /* Bordes muy redondeados, más modernos */
-    padding: 30px 20px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animación suave al pasar el mouse */
-    backdrop-filter: blur(15px); /* Efecto de cristal esmerilado */
     position: relative;
-    overflow: hidden; /* Para que los brillos no se salgan */
-    text-align: center;
 }
 
-/* Efecto al pasar el mouse (Hover) */
-.card-staff:hover {
-    transform: translateY(-10px) scale(1.02); /* Se levanta y agranda sutilmente */
-    border-color: rgba(255, 255, 255, 0.3); /* El borde se ilumina */
-    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.05); /* Sombra suave plateada */
+.card:hover { 
+    border-color: #fff; 
+    background: rgba(40, 40, 40, 0.9);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
 }
 
-/* Brillo sutil que recorre la tarjeta al hacer hover */
-.card-staff::after {
-    content: "";
-    position: absolute;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background: conic-gradient(transparent, rgba(255, 255, 255, 0.1), transparent 30%);
-    transition: transform 0.6s;
-    transform: rotate(0deg);
-    z-index: -1;
-}
-
-.card-staff:hover::after {
-    transform: rotate(180deg);
-}
-
-/* --- ESTILO ESPECIAL EXÓTICO: OWNER --- */
-.card-owner {
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde más visible de base */
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* Brillo base sutil */
-}
-
-.card-owner:hover {
-    border-color: #fff; /* Borde blanco puro al hover */
-    box-shadow: 0 0 40px rgba(255, 255, 255, 0.3); /* ¡SUPER GLOW EXÓTICO! */
-}
-
-/* Rango OWNER Estilo "Metal Líquido" */
-.owner-rank {
-    font-size: 10px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: #fff;
-    font-weight: 900;
-    margin-top: 10px;
-    background: linear-gradient(90deg, #888, #fff, #888); /* Efecto plateado/metal */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Brillo neón blanco */
-    display: inline-block;
-    padding: 2px 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-}
-
-/* --- ELEMENTOS INTERNOS DE LA TARJETA --- */
-
-/* Foto de perfil con "Anillo de Luz" */
-.staff-img-v3 {
-    width: 110px; height: 110px;
+/* ESTILO STAFF EXÓTICO */
+.staff-img-container {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    margin: 0 auto 20px;
-    display: block;
+    border: 3px solid #fff;
+    margin: 0 auto 15px;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
     background-size: cover;
     background-position: center;
-    border: 3px solid #000; /* Borde interior negro para contraste */
-    box-shadow: 0 0 0 3px #fff, 0 0 15px rgba(255, 255, 255, 0.4); /* Anillo de luz exterior */
+    background-repeat: no-repeat;
+    display: block;
     transition: 0.3s;
 }
 
-.card-staff:hover .staff-img-v3 {
-    box-shadow: 0 0 0 4px #fff, 0 0 25px rgba(255, 255, 255, 0.6); /* El anillo brilla más */
-    transform: scale(1.05);
+.card:hover .staff-img-container {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #fff;
 }
 
-/* Nombre del integrante */
-.staff-name-v3 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.4rem;
-    color: #fff;
+.staff-card-content { text-align: center; }
+
+.owner-rank {
+    font-size: 10px;
+    letter-spacing: 3px;
     font-weight: 900;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    margin-bottom: 5px;
+    color: #fff;
+    background: linear-gradient(90deg, #888, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+    margin-top: 5px;
 }
+
+/* BOTONES Y BADGES */
+.btn-dl { 
+    display: block; width: 100%; padding: 15px; 
+    background: #fff; 
+    color: #000; 
+    text-align: center; 
+    text-decoration: none; 
+    font-size: 0.85rem; 
+    font-weight: 900; 
+    border-radius: 8px; 
+    transition: 0.3s; 
+}
+
+.btn-dl:hover { 
+    background: #ccc;
+    transform: scale(1.02);
+}
+
+.download-badge { 
+    position: absolute; top: 15px; right: 15px; 
+    background: #222; 
+    border: 1px solid #444; 
+    color: #fff; 
+    padding: 5px 12px; 
+    border-radius: 5px; 
+    font-size: 0.65rem; 
+}
+
+.info-row { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 8px; }
+.label { color: #888; font-size: 0.7rem; }
+.value { color: #fff; font-size: 0.85rem; }
+
+#music-container {
+    position: fixed; bottom: 25px; left: 25px; 
+    background: #111; border: 1px solid #fff;
+}
+
+    
