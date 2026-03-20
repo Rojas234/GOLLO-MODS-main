@@ -80,104 +80,107 @@ main { flex: 1; padding: 40px; overflow-y: auto; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 /* REJILLAS (GRIDS) */
-.staff-grid, .aportes-grid, .datas-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(260px, 320px)); 
-    gap: 20px; 
-    margin-top: 30px;
-    padding-bottom: 50px;
-    justify-content: center; 
+/* --- NUEVO ESTILO COMPACTO Y PULIDO PARA STAFF (Inspirado en image_9.png) --- */
+
+/* Ajuste de la rejilla para que se vea como en image_9.png */
+.staff-grid {
+    display: grid;
+    /* Tarjetas más pequeñas y compactas (220px) */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+    gap: 30px; /* Mismo espacio que en el ejemplo */
+    margin-top: 40px;
+    justify-content: center; /* Centra las tarjetas en la pantalla */
+    padding: 0 40px 60px 40px; /* Espacio lateral para que el grid no toque los bordes */
 }
 
-/* TARJETAS (CARDS) */
+/* Tarjeta Base Compacta (Copiando la forma de image_9.png con tus colores) */
 .card { 
-    max-width: 320px; 
+    max-width: 260px; /* Ancho máximo para evitar que se estiren demasiado */
     margin: 0 auto;
-    background: rgba(20, 20, 20, 0.85); 
-    border: 1px solid rgba(255, 255, 255, 0.1); 
-    border-radius: 12px; 
-    padding: 20px; 
-    transition: all 0.3s ease; 
+    background: rgba(10, 10, 10, 0.85); /* Fondo ultra oscuro y traslúcido, monocromático */
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Borde sutil, monocromático */
+    border-radius: 15px; /* Bordes ligeramente redondeados */
+    padding: 25px 15px; /* Relleno ajustado para compacidad */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
     backdrop-filter: blur(10px);
     position: relative;
+    text-align: center; /* Centra todo el texto por defecto */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos verticalmente */
 }
 
+/* Efecto de Halo y Brillo (Inspirado en image_9.png, pero Monocromático) */
 .card:hover { 
-    border-color: #fff; 
-    background: rgba(40, 40, 40, 0.9);
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-    transform: translateY(-5px);
+    border-color: #ffffff; /* Borde blanco puro al hover */
+    background: rgba(30, 30, 30, 0.9);
+    transform: translateY(-8px);
+    /* HALO NEÓN MONOCROMÁTICO (Brillo blanco/plateado) */
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2); 
 }
 
-/* ESTILO STAFF EXÓTICO */
+/* --- ELEMENTOS INTERNOS DE LA TARJETA (Copiando image_9.png con tus colores) --- */
+
+/* Contenedor de Imagen Circular con Brillo */
 .staff-img-container {
-    width: 100px;
-    height: 100px;
+    width: 90px; /* Tamaño compacto para la foto */
+    height: 90px;
     border-radius: 50%;
-    border: 3px solid #fff;
-    margin: 0 auto 15px;
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+    margin-bottom: 15px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     display: block;
+    border: 3px solid #000; /* Borde interior negro para contraste */
+    /* HALO NEÓN ALREDEDOR DE LA FOTO (Blanco/Plata) */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
     transition: 0.3s;
 }
 
 .card:hover .staff-img-container {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px #fff;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.5); /* El halo brilla más al hover */
+    transform: scale(1.05);
 }
 
-.staff-card-content { text-align: center; }
+/* Contenedor de texto para centrarlo (Opcional si usas flex) */
+.staff-card-content {
+    width: 100%;
+    margin-top: auto; /* Empuja el texto hacia abajo si hay espacio */
+}
 
-.owner-rank {
-    font-size: 10px;
-    letter-spacing: 3px;
+/* Nombre del Integrante (Tus Colores actuales) */
+.staff-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem; /* Tamaño compacto pero legible */
+    color: #fff; /* Blanco puro */
     font-weight: 900;
-    color: #fff;
-    background: linear-gradient(90deg, #888, #fff, #888);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Rango del Integrante (Tus Colores actuales: Gris/Secundario) */
+.staff-rank {
+    font-size: 0.75rem;
+    color: var(--secondary); /* Gris claro (#b0b0b0) */
+    letter-spacing: 2px;
+    text-transform: uppercase;
     margin-top: 5px;
 }
 
-/* BOTONES Y BADGES */
-.btn-dl { 
-    display: block; width: 100%; padding: 15px; 
-    background: #fff; 
-    color: #000; 
-    text-align: center; 
-    text-decoration: none; 
-    font-size: 0.85rem; 
-    font-weight: 900; 
-    border-radius: 8px; 
-    transition: 0.3s; 
+/* --- ESTILO ESPECIAL EXÓTICO: OWNER (Manteniendo tu idea, monocromático) --- */
+.owner-rank {
+    font-size: 10px;
+    letter-spacing: 4px;
+    font-weight: 900;
+    color: #fff;
+    background: linear-gradient(90deg, #888, #fff, #888); /* Efecto metal líquido, monocromático */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 5px rgba(255,255,255,0.5); /* Brillo sutil */
+    margin-top: 5px;
 }
 
-.btn-dl:hover { 
-    background: #ccc;
-    transform: scale(1.02);
+/* Sobreescribe el brillo de la tarjeta para el Owner para que sea más intenso */
+.card-owner:hover {
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.3); /* ¡SUPER GLOW MONOCROMÁTICO! */
 }
-
-.download-badge { 
-    position: absolute; top: 15px; right: 15px; 
-    background: #222; 
-    border: 1px solid #444; 
-    color: #fff; 
-    padding: 5px 12px; 
-    border-radius: 5px; 
-    font-size: 0.65rem; 
-}
-
-.info-row { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 8px; }
-.label { color: #888; font-size: 0.7rem; }
-.value { color: #fff; font-size: 0.85rem; }
-
-#music-container {
-    position: fixed; bottom: 25px; left: 25px; 
-    background: #111; border: 1px solid #fff;
-}
-
-    
