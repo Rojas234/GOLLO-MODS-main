@@ -12,21 +12,25 @@
 
     * { box-sizing: border-box; }
 
-    body { 
-        margin: 0; 
-        background-color: var(--bg-deep); 
-        /* Fondo con la monja repetida suavemente */
-        background-image: linear-gradient(rgba(6, 2, 13, 0.9), rgba(6, 2, 13, 0.9)), var(--bg-horror);
-        background-attachment: fixed;
-        background-size: 500px; /* Tamaño de la imagen de fondo */
-        background-position: center;
-        color: #e0e0e0; 
-        font-family: 'Orbitron', sans-serif; 
-        height: 100vh; 
-        display: flex; 
-        overflow: hidden; 
-    }
+   body { 
+    margin: 0; 
+    /* Fondo con una capa de color negro muy suave (0.4) para que las letras blancas resalten */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), var(--bg-horror);
+    background-color: #000; /* Fondo negro puro si la imagen tarda en cargar */
+    
+    /* --- AQUÍ ESTÁ LA SOLUCIÓN AL MOSAICO Y LA OSCURIDAD --- */
+    background-repeat: no-repeat; /* Solo una imagen, no se repite */
+    background-size: cover;      /* Ocupa todo el ancho y alto, se estira */
+    background-position: center;  /* Centrada en la pantalla */
+    background-attachment: fixed; /* Se queda quieta al hacer scroll */
+    /* ----------------------------------------------------- */
 
+    color: #fff; /* Letras blancas puras para máximo contraste */
+    font-family: 'Orbitron', sans-serif; 
+    height: 100vh; 
+    display: flex; 
+    overflow: hidden; 
+}
     /* BARRA DE NAVEGACIÓN IZQUIERDA */
     nav { 
         width: 110px; 
