@@ -169,3 +169,109 @@
         position: fixed; bottom: 25px; left: 25px; 
         background: #111; border: 1px solid #fff;
     }
+
+    /* --- ESTILO EXÓTICO PARA TARJETAS DE STAFF --- */
+
+.staff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 340px)); /* Ancho ideal, no muy anchas */
+    gap: 30px;
+    margin-top: 40px;
+    justify-content: center;
+    padding-bottom: 60px;
+}
+
+/* Base de la Tarjeta Estilo Glassmorphism Gótico */
+.card-staff {
+    background: rgba(10, 10, 10, 0.6); /* Fondo ultra oscuro y traslúcido */
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Borde casi invisible */
+    border-radius: 20px; /* Bordes muy redondeados, más modernos */
+    padding: 30px 20px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animación suave al pasar el mouse */
+    backdrop-filter: blur(15px); /* Efecto de cristal esmerilado */
+    position: relative;
+    overflow: hidden; /* Para que los brillos no se salgan */
+    text-align: center;
+}
+
+/* Efecto al pasar el mouse (Hover) */
+.card-staff:hover {
+    transform: translateY(-10px) scale(1.02); /* Se levanta y agranda sutilmente */
+    border-color: rgba(255, 255, 255, 0.3); /* El borde se ilumina */
+    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.05); /* Sombra suave plateada */
+}
+
+/* Brillo sutil que recorre la tarjeta al hacer hover */
+.card-staff::after {
+    content: "";
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: conic-gradient(transparent, rgba(255, 255, 255, 0.1), transparent 30%);
+    transition: transform 0.6s;
+    transform: rotate(0deg);
+    z-index: -1;
+}
+
+.card-staff:hover::after {
+    transform: rotate(180deg);
+}
+
+/* --- ESTILO ESPECIAL EXÓTICO: OWNER --- */
+.card-owner {
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde más visible de base */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* Brillo base sutil */
+}
+
+.card-owner:hover {
+    border-color: #fff; /* Borde blanco puro al hover */
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.3); /* ¡SUPER GLOW EXÓTICO! */
+}
+
+/* Rango OWNER Estilo "Metal Líquido" */
+.owner-rank {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 900;
+    margin-top: 10px;
+    background: linear-gradient(90deg, #888, #fff, #888); /* Efecto plateado/metal */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Brillo neón blanco */
+    display: inline-block;
+    padding: 2px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+/* --- ELEMENTOS INTERNOS DE LA TARJETA --- */
+
+/* Foto de perfil con "Anillo de Luz" */
+.staff-img-v3 {
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: block;
+    background-size: cover;
+    background-position: center;
+    border: 3px solid #000; /* Borde interior negro para contraste */
+    box-shadow: 0 0 0 3px #fff, 0 0 15px rgba(255, 255, 255, 0.4); /* Anillo de luz exterior */
+    transition: 0.3s;
+}
+
+.card-staff:hover .staff-img-v3 {
+    box-shadow: 0 0 0 4px #fff, 0 0 25px rgba(255, 255, 255, 0.6); /* El anillo brilla más */
+    transform: scale(1.05);
+}
+
+/* Nombre del integrante */
+.staff-name-v3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    color: #fff;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 5px;
+}
