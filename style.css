@@ -1,12 +1,13 @@
- <style>
+  <style>
     :root {
         --primary: #9d00ff;
         --secondary: #00f2ff;
         --bg-deep: #06020d;
         --glass: rgba(255, 255, 255, 0.03);
         --border: rgba(157, 0, 255, 0.3);
-        /* LOGO DE TU SERVER DE FONDO */
-        --bg-logo: url('https://postimg.cc/jDkqzVvv');
+        
+        /* AQUÍ PEGAS EL LINK DIRECTO QUE COPIASTE DE POSTIMAGES */
+        --bg-horror: url('https://postimg.cc/jDkqzVvv');
     }
 
     * { box-sizing: border-box; }
@@ -14,10 +15,11 @@
     body { 
         margin: 0; 
         background-color: var(--bg-deep); 
-        /* Fondo con el logo repetido suavemente para que no canse la vista */
-        background-image: linear-gradient(rgba(6, 2, 13, 0.85), rgba(6, 2, 13, 0.85)), var(--bg-logo);
+        /* Fondo con la monja repetida suavemente */
+        background-image: linear-gradient(rgba(6, 2, 13, 0.9), rgba(6, 2, 13, 0.9)), var(--bg-horror);
         background-attachment: fixed;
-        background-size: 300px;
+        background-size: 500px; /* Tamaño de la imagen de fondo */
+        background-position: center;
         color: #e0e0e0; 
         font-family: 'Orbitron', sans-serif; 
         height: 100vh; 
