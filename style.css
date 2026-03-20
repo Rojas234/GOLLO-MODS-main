@@ -1,38 +1,34 @@
-  <style>
+ <style>
     :root {
-        --primary: #9d00ff;
-        --secondary: #00f2ff;
-        --bg-deep: #06020d;
-        --glass: rgba(255, 255, 255, 0.03);
-        --border: rgba(157, 0, 255, 0.3);
-        
-        /* AQUÍ PEGAS EL LINK DIRECTO QUE COPIASTE DE POSTIMAGES */
+        --primary: #ffffff; /* Blanco puro para resaltar */
+        --secondary: #b0b0b0; /* Gris claro para info secundaria */
+        --bg-deep: #000000; /* Negro absoluto */
+        --glass: rgba(255, 255, 255, 0.05); /* Cristal sutil */
+        --border: rgba(255, 255, 255, 0.2); /* Bordes grises */
         --bg-horror: url('https://i.postimg.cc/SKmXbk90/icono-server-gollo.webp');
     }
 
     * { box-sizing: border-box; }
-body { 
-    margin: 0; 
-    /* Capa de color para que el texto resalte (puedes ajustar el 0.3 si la quieres más clara) */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--bg-horror);
-    
-    /* --- CONFIGURACIÓN PARA ESTIRAR SIN CORTAR --- */
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 100%; /* Estira la imagen a todo lo ancho y alto */
-    background-attachment: fixed; /* La imagen no se mueve al bajar */
-    /* --------------------------------------------- */
 
-    color: #fff; 
-    font-family: 'Orbitron', sans-serif; 
-    height: 100vh; 
-    display: flex; 
-    overflow: hidden; 
-}
-    /* BARRA DE NAVEGACIÓN IZQUIERDA */
+    body { 
+        margin: 0; 
+        background-color: var(--bg-deep); 
+        background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), var(--bg-horror);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-position: center;
+        background-attachment: fixed;
+        color: #f0f0f0; 
+        font-family: 'Orbitron', sans-serif; 
+        height: 100vh; 
+        display: flex; 
+        overflow: hidden; 
+    }
+
+    /* BARRA LATERAL GRIS OSCURO */
     nav { 
         width: 110px; 
-        background: rgba(10, 5, 20, 0.9); 
+        background: rgba(15, 15, 15, 0.9); 
         border-right: 1px solid var(--border); 
         display: flex; 
         flex-direction: column; 
@@ -56,138 +52,90 @@ body {
         transition: 0.4s; 
         font-size: 9px; 
         font-weight: 900;
-        color: #777; 
+        color: #888; 
         text-align: center; 
-        padding: 5px; 
     }
 
     .nav-icon:hover, .nav-icon.active { 
         background: var(--primary); 
-        color: white; 
-        box-shadow: 0 0 25px rgba(157, 0, 255, 0.8); 
+        color: #000; /* Texto negro sobre fondo blanco */
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); 
         border-color: #fff; 
-        transform: scale(1.05);
     }
 
-    main { flex: 1; padding: 40px; overflow-y: auto; position: relative; }
+    main { flex: 1; padding: 40px; overflow-y: auto; }
 
-    /* LOGO PRINCIPAL CON BRILLO NEÓN */
+    /* LOGO BLANCO CON SOMBRA NEGRA */
     .logo-v3 { 
-        font-family: 'Orbitron', sans-serif; 
         font-size: 3.5rem; 
         font-weight: 900; 
-        background: linear-gradient(to right, #fff, var(--secondary), var(--primary)); 
-        -webkit-background-clip: text; 
-        -webkit-text-fill-color: transparent; 
-        filter: drop-shadow(0 0 15px rgba(157, 0, 255, 0.5));
+        color: #fff;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
+        letter-spacing: -2px;
     }
 
-    .version-tag { font-size: 11px; color: var(--secondary); letter-spacing: 4px; margin-bottom: 40px; font-weight: bold; }
+    .version-tag { font-size: 11px; color: var(--secondary); letter-spacing: 5px; margin-bottom: 40px; }
 
     .page-content { display: none; animation: fadeIn 0.6s ease; }
     .page-content.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* REJILLA DE TARJETAS */
-    .staff-grid, .aportes-grid, .datas-grid, .top-grid { 
-        display: grid; 
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-        gap: 30px; 
-        margin-bottom: 50px; 
-    }
-
-    /* EFECTO DE RAYOS EN LAS TARJETAS */
+    /* TARJETAS ESTILO "STEEL" */
     .card { 
-        background: rgba(20, 10, 30, 0.6); 
+        background: rgba(20, 20, 20, 0.8); 
         border: 1px solid var(--border); 
-        border-radius: 20px; 
+        border-radius: 15px; 
         padding: 25px; 
         transition: 0.4s; 
         backdrop-filter: blur(10px); 
-        position: relative; 
-        overflow: hidden;
+        position: relative;
     }
 
-    /* El rayo que gira alrededor al pasar el mouse */
     .card:hover { 
-        border-color: var(--secondary); 
-        transform: translateY(-8px); 
-        box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
+        border-color: #fff; 
+        background: rgba(40, 40, 40, 0.9);
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
     }
 
-    .card::after {
-        content: "";
-        position: absolute;
-        top: -10%; left: -10%;
-        width: 120%; height: 120%;
-        background: conic-gradient(transparent, var(--secondary), transparent 20%);
-        animation: rotateRay 4s linear infinite;
-        opacity: 0;
-        transition: 0.3s;
-        z-index: -1;
-    }
-
-    .card:hover::after { opacity: 1; }
-
-    @keyframes rotateRay {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-
-    /* ELEMENTOS DENTRO DE LA TARJETA */
-    .download-badge { 
-        position: absolute; top: 15px; right: 15px; 
-        background: rgba(0, 242, 255, 0.1); 
-        border: 1px solid var(--secondary); 
-        color: var(--secondary); 
-        padding: 5px 12px; 
-        border-radius: 8px; 
-        font-size: 0.7rem; 
-        font-weight: 900;
-    }
-
-    .staff-img { 
-        width: 90px; height: 90px; border-radius: 50%; 
-        margin: 0 auto 15px; border: 3px solid var(--primary); 
-        box-shadow: 0 0 20px var(--primary); 
-        background-size: cover; background-position: center; 
-    }
-
-    .staff-name { font-size: 1.2rem; color: #fff; text-align: center; margin-bottom: 5px; }
-    .staff-rank { font-size: 0.75rem; color: var(--secondary); text-align: center; letter-spacing: 2px; }
-
-    .info-row { display: flex; justify-content: space-between; margin: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; }
-    .label { color: var(--secondary); font-size: 0.65rem; font-weight: bold; }
-    .value { color: #fff; font-size: 0.8rem; }
-
-    .foto-preview-v2 { 
-        width: 100%; height: 180px; object-fit: cover; 
-        border-radius: 12px; margin: 15px 0; 
-        border: 1px solid var(--border); 
-        transition: 0.3s;
-    }
-
-    .card:hover .foto-preview-v2 { border-color: var(--secondary); transform: scale(1.02); }
-
+    /* BOTÓN DE DESCARGA NEGRO Y BLANCO */
     .btn-dl { 
         display: block; width: 100%; padding: 15px; 
-        background: linear-gradient(90deg, #1e003a, var(--primary)); 
-        color: white; text-align: center; text-decoration: none; 
-        font-size: 0.85rem; font-weight: 900; border-radius: 12px; 
-        border: 1px solid var(--border); transition: 0.3s; 
+        background: #fff; 
+        color: #000; 
+        text-align: center; 
+        text-decoration: none; 
+        font-size: 0.85rem; 
+        font-weight: 900; 
+        border-radius: 8px; 
+        transition: 0.3s; 
     }
 
     .btn-dl:hover { 
-        box-shadow: 0 0 25px var(--primary); 
-        border-color: #fff; 
-        letter-spacing: 1px;
+        background: #ccc;
+        transform: scale(1.02);
     }
 
-    /* ESTILO RADIO MÚSICA */
+    .download-badge { 
+        position: absolute; top: 15px; right: 15px; 
+        background: #222; 
+        border: 1px solid #444; 
+        color: #fff; 
+        padding: 5px 12px; 
+        border-radius: 5px; 
+        font-size: 0.65rem; 
+    }
+
+    .staff-img { 
+        border: 2px solid #fff; 
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); 
+    }
+
+    .info-row { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 8px; }
+    .label { color: #888; font-size: 0.7rem; }
+    .value { color: #fff; font-size: 0.85rem; }
+
     #music-container {
         position: fixed; bottom: 25px; left: 25px; 
-        background: rgba(10, 5, 20, 0.9); padding: 12px 20px; 
-        border-radius: 50px; border: 1px solid var(--secondary); 
-        box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+        background: #111; border: 1px solid #fff;
     }
 </style>
