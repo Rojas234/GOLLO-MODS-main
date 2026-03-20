@@ -102,6 +102,26 @@
     backdrop-filter: blur(10px);
 }
 
+/* --- ESTILO PARA IMÁGENES DE PERFIL DE STAFF --- */
+.staff-img-container {
+    width: 100px;           /* Ancho fijo */
+    height: 100px;          /* Alto fijo (igual al ancho para que sea un cuadrado perfecto) */
+    border-radius: 50%;     /* Hace el contenedor circular */
+    border: 3px solid #fff; /* Borde blanco grueso */
+    margin: 0 auto 15px;    /* Centra horizontalmente (0 auto) y da espacio abajo (15px) */
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2); /* Sombra suave para resaltar */
+    
+    /* Configuración para la imagen de fondo */
+    background-size: cover;       /* Cubre todo el contenedor sin estirarse */
+    background-position: center;  /* Centra la imagen dentro del círculo */
+    background-repeat: no-repeat;
+    display: block;               /* Asegura que el margen auto funcione */
+}
+
+/* Opcional: Centrar el nombre y rango en la tarjeta */
+.staff-card-content {
+    text-align: center;
+}
     .card:hover { 
         border-color: #fff; 
         background: rgba(40, 40, 40, 0.9);
