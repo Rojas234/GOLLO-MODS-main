@@ -20,80 +20,35 @@
 
 
 
-/* --- NUEVA ANIMACIÓN DE RELÁMPAGOS INTENSOS --- */
-
 body {
-    /* Mantenemos tu configuración base... */
-    margin: 0; 
-    color: #f0f0f0; 
-    font-family: 'Orbitron', sans-serif; 
-    height: 100vh; 
-    display: flex; 
+
+    margin: 0;
+
+    background-color: var(--bg-deep);
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), var(--bg-horror);
+
+    background-repeat: no-repeat;
+
+    background-size: 100% 100%;
+
+    background-position: center;
+
+    background-attachment: fixed;
+
+    color: #f0f0f0;
+
+    font-family: 'Orbitron', sans-serif;
+
+    height: 100vh;
+
+    display: flex;
+
     overflow: hidden;
 
-    /* 1. ACTUALIZAMOS LA IMAGEN DE FONDO */
-    /* Usamos tu fondo actual gótico Y la nueva imagen con rayos superpuesta */
-    /* Asegúrate de tener el archivo 'fondo_rayos.webp' en la carpeta */
-    background-color: var(--bg-deep);
-    background-image: 
-        /* Capa superior: El parpadeo del relámpago (se anima) */
-        url('https://w7.pngwing.com/pngs/271/762/png-transparent-lightning-illustration-lightning-strike-thunderstorm-sky-lightning-blue-cloud-computer-wallpaper.png'), 
-        /* Capa media: Oscurecimiento para que no brille tanto el fondo */
-        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-        /* Capa base: Tu fondo gótico original */
-        var(--bg-horror);
-    
-    background-repeat: no-repeat;
-    background-size: cover, cover, cover; /* Cubre todo el fondo */
-    background-position: center;
-    background-attachment: fixed;
-    
-    /* 2. AÑADIMOS LA ANIMACIÓN DE PARPADEO INTENSO */
-    /* Nombre | Duración (7s para más frecuencia) | Intervalo (infinite) */
-    animation: intense-lightning-flash 7s infinite; 
 }
 
-/* 3. Definimos la animación de parpadeo violento */
-@keyframes intense-lightning-flash {
-    /* Estado normal (oscuro) la mayor parte del tiempo */
-    0%, 93%, 100% {
-        background-color: var(--bg-deep);
-        /* Usamos box-shadow para un "brillo de impacto" en los bordes */
-        box-shadow: none; 
-    }
-    
-    /* EL PARPADEO VIOLENTO (Simulación de impacto cercano) */
-    
-    /* Parpadeo 1 (Destello rápido inicial) */
-    94% {
-        background-color: rgba(0, 242, 255, 0.3); /* Brillo cian intenso de fondo */
-        box-shadow: inset 0 0 100px rgba(0, 242, 255, 0.5); /* Impacto en los bordes */
-    }
-    
-    /* Breve oscuridad */
-    94.5% {
-        background-color: var(--bg-deep);
-        box-shadow: none;
-    }
-    
-    /* Parpadeo 2 (El más fuerte) */
-    95% {
-        background-color: rgba(255, 255, 255, 0.6); /* Brillo blanco puro súper intenso */
-        box-shadow: inset 0 0 200px rgba(255, 255, 255, 0.7); /* Máximo impacto */
-    }
-    
-    /* Breve oscuridad */
-    95.5% {
-        background-color: var(--bg-deep);
-        box-shadow: none;
-    }
-    
-    /* Parpadeo 3 (Disipándose) */
-    96% {
-        background-color: rgba(0, 242, 255, 0.2);
-        box-shadow: inset 0 0 50px rgba(0, 242, 255, 0.3);
-    }
-}
+
 
 /* BARRA LATERAL */
 
