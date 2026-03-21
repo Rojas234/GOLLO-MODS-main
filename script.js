@@ -76,7 +76,7 @@ db.ref('descargas').on('value', (snapshot) => {
     renderTopsFirebase(data);
 });
 
-// --- 4. RENDERIZADO DE TOPS (FIREBASE) ---
+
 // --- 4. RENDERIZADO DE TOPS (FIREBASE ACTUALIZADO) ---
 function renderTopsFirebase(globalData) {
     function build(cardSelector, targetContainerId) {
@@ -126,7 +126,9 @@ function renderTopsFirebase(globalData) {
 
     // Llamamos a la función con tus nuevas clases de tarjetas
     build('.card-aporte', 'cont-top-a');
-    build('.card-data', 'cont-top-d');
+    // Dentro de la función renderTopsGlobal(globalData) ...
+// Esta línea es la que hace que el Top de Datas funcione:
+build('.card-data', 'cont-top-d');
 }
 // --- 5. SISTEMA DE MÚSICA ---
 const audio = document.getElementById('bg-audio');

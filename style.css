@@ -659,3 +659,32 @@ main { flex: 1; padding: 40px; overflow-y: auto; }
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Brillo blanco al nombre */
 
 }
+
+/* Reutilizamos el estilo de la rejilla para Datas */
+.datas-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+    gap: 25px; 
+    margin-top: 30px; 
+    padding: 0 40px 60px 40px; 
+    justify-content: center; 
+}
+
+/* Estilo para la tarjeta de Data (Igual a card-aporte para consistencia) */
+.card-data {
+    background: rgba(10, 10, 10, 0.85); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 15px; 
+    padding: 20px; 
+    transition: all 0.3s ease; 
+    backdrop-filter: blur(12px);
+    display: flex; 
+    flex-direction: column;
+    position: relative;
+}
+
+.card-data:hover {
+    border-color: #ffffff;
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+}
