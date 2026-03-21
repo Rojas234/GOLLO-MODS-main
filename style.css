@@ -1,9 +1,9 @@
 :root {
-    --primary: #ffffff; /* Blanco puro para resaltar */
-    --secondary: #b0b0b0; /* Gris claro para info secundaria */
-    --bg-deep: #000000; /* Negro absoluto */
-    --glass: rgba(255, 255, 255, 0.05); /* Cristal sutil */
-    --border: rgba(255, 255, 255, 0.2); /* Bordes grises */
+    --primary: #ffffff;
+    --secondary: #b0b0b0;
+    --bg-deep: #000000;
+    --glass: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.2);
     --bg-horror: url('https://i.postimg.cc/SKmXbk90/icono-server-gollo.webp');
 }
 
@@ -24,7 +24,7 @@ body {
     overflow: hidden; 
 }
 
-/* BARRA LATERAL */
+/* --- NAVEGACIÓN --- */
 nav { 
     width: 110px; 
     background: rgba(15, 15, 15, 0.9); 
@@ -39,293 +39,132 @@ nav {
 }
 
 .nav-icon { 
-    width: 85px; 
-    height: 55px; 
+    width: 85px; height: 55px; 
     background: var(--glass); 
     border: 1px solid var(--border); 
     border-radius: 12px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    cursor: pointer; 
-    transition: 0.4s; 
-    font-size: 9px; 
-    font-weight: 900;
-    color: #888; 
-    text-align: center; 
+    display: flex; align-items: center; justify-content: center; 
+    cursor: pointer; transition: 0.4s; 
+    font-size: 9px; font-weight: 900; color: #888; text-align: center; 
 }
 
 .nav-icon:hover, .nav-icon.active { 
-    background: var(--primary); 
-    color: #000; 
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); 
-    border-color: #fff; 
+    background: var(--primary); color: #000; 
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); border-color: #fff; 
 }
 
 main { flex: 1; padding: 40px; overflow-y: auto; }
 
-/* LOGO Y TITULOS */
 .logo-v3 { 
-    font-size: 3.5rem; 
-    font-weight: 900; 
-    color: #fff;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
-    letter-spacing: -2px;
+    font-size: 3.5rem; font-weight: 900; color: #fff;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 1); letter-spacing: -2px;
 }
-
-.version-tag { font-size: 11px; color: var(--secondary); letter-spacing: 5px; margin-bottom: 40px; }
 
 .page-content { display: none; animation: fadeIn 0.6s ease; }
 .page-content.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* REJILLAS (GRIDS) */
-/* --- NUEVO ESTILO COMPACTO Y PULIDO PARA STAFF (Inspirado en image_9.png) --- */
-
-/* Ajuste de la rejilla para que se vea como en image_9.png */
+/* --- SECCIÓN STAFF (TARJETAS COMPACTAS) --- */
 .staff-grid {
     display: grid;
-    /* Tarjetas más pequeñas y compactas (220px) */
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
-    gap: 30px; /* Mismo espacio que en el ejemplo */
-    margin-top: 40px;
-    justify-content: center; /* Centra las tarjetas en la pantalla */
-    padding: 0 40px 60px 40px; /* Espacio lateral para que el grid no toque los bordes */
+    gap: 30px; margin-top: 40px; justify-content: center; 
+    padding: 0 40px 60px 40px;
 }
 
-/* Tarjeta Base Compacta (Copiando la forma de image_9.png con tus colores) */
 .card { 
-    max-width: 260px; /* Ancho máximo para evitar que se estiren demasiado */
-    margin: 0 auto;
-    background: rgba(10, 10, 10, 0.85); /* Fondo ultra oscuro y traslúcido, monocromático */
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Borde sutil, monocromático */
-    border-radius: 15px; /* Bordes ligeramente redondeados */
-    padding: 25px 15px; /* Relleno ajustado para compacidad */
+    max-width: 260px; margin: 0 auto;
+    background: rgba(10, 10, 10, 0.85); 
+    border: 1px solid rgba(255, 255, 255, 0.05); 
+    border-radius: 15px; padding: 25px 15px; 
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-    backdrop-filter: blur(10px);
-    position: relative;
-    text-align: center; /* Centra todo el texto por defecto */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centra los elementos verticalmente */
+    backdrop-filter: blur(10px); text-align: center;
 }
 
-/* Efecto de Halo y Brillo (Inspirado en image_9.png, pero Monocromático) */
 .card:hover { 
-    border-color: #ffffff; /* Borde blanco puro al hover */
-    background: rgba(30, 30, 30, 0.9);
-    transform: translateY(-8px);
-    /* HALO NEÓN MONOCROMÁTICO (Brillo blanco/plateado) */
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2); 
+    border-color: #ffffff; background: rgba(30, 30, 30, 0.9);
+    transform: translateY(-8px); box-shadow: 0 0 25px rgba(255, 255, 255, 0.2); 
 }
 
-/* --- ELEMENTOS INTERNOS DE LA TARJETA (Copiando image_9.png con tus colores) --- */
-
-/* Contenedor de Imagen Circular con Brillo */
 .staff-img-container {
-    width: 90px; /* Tamaño compacto para la foto */
-    height: 90px;
-    border-radius: 50%;
-    margin-bottom: 15px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: block;
-    border: 3px solid #000; /* Borde interior negro para contraste */
-    /* HALO NEÓN ALREDEDOR DE LA FOTO (Blanco/Plata) */
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-    transition: 0.3s;
+    width: 90px; height: 90px; border-radius: 50%;
+    margin: 0 auto 15px; background-size: cover; background-position: center;
+    border: 3px solid #000; box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
-.card:hover .staff-img-container {
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.5); /* El halo brilla más al hover */
-    transform: scale(1.05);
-}
-
-/* Contenedor de texto para centrarlo (Opcional si usas flex) */
-.staff-card-content {
-    width: 100%;
-    margin-top: auto; /* Empuja el texto hacia abajo si hay espacio */
-}
-
-/* Nombre del Integrante (Tus Colores actuales) */
-.staff-name {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.2rem; /* Tamaño compacto pero legible */
-    color: #fff; /* Blanco puro */
-    font-weight: 900;
-    margin-bottom: 5px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-}
-
-/* Rango del Integrante (Tus Colores actuales: Gris/Secundario) */
-.staff-rank {
-    font-size: 0.75rem;
-    color: var(--secondary); /* Gris claro (#b0b0b0) */
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-top: 5px;
-}
-
-/* --- ESTILO ESPECIAL EXÓTICO: OWNER (Manteniendo tu idea, monocromático) --- */
-.owner-rank {
-    font-size: 10px;
-    letter-spacing: 4px;
-    font-weight: 900;
-    color: #fff;
-    background: linear-gradient(90deg, #888, #fff, #888); /* Efecto metal líquido, monocromático */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 5px rgba(255,255,255,0.5); /* Brillo sutil */
-    margin-top: 5px;
-}
-
-/* Sobreescribe el brillo de la tarjeta para el Owner para que sea más intenso */
-.card-owner:hover {
-    box-shadow: 0 0 40px rgba(255, 255, 255, 0.3); /* ¡SUPER GLOW MONOCROMÁTICO! */
-}
-
-/* --- DISEÑO DE APORTES Y DATAS (MÁS ANCHOS) --- */
-
+/* --- SECCIÓN APORTES Y DATAS (TARJETAS ANCHAS) --- */
 .aportes-grid, .datas-grid { 
     display: grid; 
-    /* Un poco más anchas que el staff (mínimo 320px) */
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-    gap: 25px; 
-    margin-top: 30px;
-    padding: 0 40px 60px 40px;
-    justify-content: center; 
+    gap: 25px; margin-top: 30px; padding: 0 40px 60px 40px; justify-content: center; 
 }
 
-/* Tarjeta de Aporte/Data (Misma estética que el Staff) */
 .card-aporte {
-    background: rgba(10, 10, 10, 0.8); 
+    background: rgba(10, 10, 10, 0.85); 
     border: 1px solid rgba(255, 255, 255, 0.1); 
-    border-radius: 15px; 
-    padding: 20px; 
-    transition: all 0.3s ease; 
-    backdrop-filter: blur(12px);
-    position: relative;
-    display: flex;
-    flex-direction: column;
+    border-radius: 15px; padding: 20px; 
+    transition: all 0.3s ease; backdrop-filter: blur(12px);
+    display: flex; flex-direction: column;
 }
 
 .card-aporte:hover {
-    border-color: #ffffff;
-    transform: translateY(-5px);
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.15); /* Neón blanco */
+    border-color: #ffffff; transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
 }
 
-/* Imagen de Preview del Mod */
 .foto-preview-v2 { 
-    width: 100%; 
-    height: 180px; /* Altura fija para que todas se vean iguales */
-    border-radius: 10px; 
-    object-fit: cover; 
-    margin-bottom: 15px;
+    width: 100%; height: 180px; border-radius: 10px; 
+    object-fit: cover; margin-bottom: 15px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: 0.3s;
-}
-
-.card-aporte:hover .foto-preview-v2 {
-    border-color: #fff;
-}
-
-/* Badge de ID (el cuadrito arriba a la derecha) */
-.download-badge { 
-    position: absolute; 
-    top: 10px; 
-    right: 10px; 
-    background: rgba(255, 255, 255, 0.1); 
-    border: 1px solid rgba(255, 255, 255, 0.3); 
-    color: #fff; 
-    padding: 4px 10px; 
-    border-radius: 6px; 
-    font-size: 10px; 
-    font-weight: bold;
-    backdrop-filter: blur(5px);
-}
-
-/* Filas de información (Descargas, Creador, etc.) */
-.info-row { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
-    padding: 8px 0; 
-    margin-bottom: 5px; 
-}
-
-.label { color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
-.value { color: #fff; font-size: 13px; font-weight: bold; }
-
-/* Botón de Descarga mejorado */
-.btn-dl { 
-    margin-top: 15px;
-    display: block; 
-    width: 100%; 
-    padding: 12px; 
-    background: #ffffff; 
-    color: #000000; 
-    text-align: center; 
-    text-decoration: none; 
-    font-size: 12px; 
-    font-weight: 900; 
-    border-radius: 8px; 
-    transition: 0.3s; 
-    text-transform: uppercase;
-}
-
-.btn-dl:hover { 
-    background: #cccccc;
-    box-shadow: 0 0 15px #fff;
-    transform: scale(1.02);
-}
-
-/* Estilo para los comandos e información extra */
-.info-block {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.info-block .label {
-    display: block;
-    font-size: 9px;
-    color: var(--secondary);
-    margin-bottom: 3px;
-}
-
-.info-block .value-text {
-    font-size: 11px;
-    color: #ddd;
-    line-height: 1.4;
-}
-
-.comando-text {
-    font-family: 'Courier New', monospace;
-    color: #fff;
-    background: #111;
-    padding: 2px 5px;
-    border-radius: 4px;
-    font-size: 10px;
 }
 
 .aporte-titulo {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.1rem;      /* Tamaño grande */
-    font-weight: 900;       /* Muy negrita */
-    color: #ffffff;         /* Blanco puro */
-    text-transform: uppercase; /* Todo en mayúsculas para que se vea más rudo */
-    margin-bottom: 12px;    /* Espacio con lo de abajo */
-    letter-spacing: 1px;    /* Espaciado entre letras futurista */
-    border-left: 3px solid #fff; /* Una pequeña línea blanca al lado para estilo */
-    padding-left: 10px;
+    font-size: 1.1rem; font-weight: 900; color: #ffffff;
+    text-transform: uppercase; margin-bottom: 12px;
+    letter-spacing: 1px; border-left: 3px solid #fff; padding-left: 10px;
 }
 
-/* Efecto cuando pasas el mouse por la tarjeta */
-.card-aporte:hover .aporte-titulo {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Brillo blanco al nombre */
+/* --- INFO Y COMANDOS --- */
+.info-row { 
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 8px 0; 
+}
+
+.label { color: #888; font-size: 11px; text-transform: uppercase; }
+.value { color: #fff; font-size: 13px; font-weight: bold; }
+
+.info-block {
+    background: rgba(255, 255, 255, 0.03); border-radius: 8px;
+    padding: 10px; margin: 10px 0; border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.value-text { font-size: 11px; color: #ddd; line-height: 1.4; }
+
+.comando-text {
+    font-family: 'Courier New', monospace; color: #fff;
+    background: #111; padding: 2px 5px; border-radius: 4px; font-size: 10px;
+}
+
+/* --- BOTONES --- */
+.btn-dl { 
+    margin-top: auto; padding: 12px; background: #ffffff; color: #000; 
+    text-align: center; text-decoration: none; font-size: 12px; font-weight: 900; 
+    border-radius: 8px; transition: 0.3s; text-transform: uppercase;
+}
+
+.btn-dl:hover { background: #cccccc; box-shadow: 0 0 15px #fff; }
+
+.download-badge { 
+    position: absolute; top: 10px; right: 10px; 
+    background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); 
+    color: #fff; padding: 4px 10px; border-radius: 6px; font-size: 10px;
+}
+
+/* --- RANQUING --- */
+.owner-rank {
+    font-size: 10px; letter-spacing: 4px; font-weight: 900; color: #fff;
+    background: linear-gradient(90deg, #888, #fff, #888);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
 }
