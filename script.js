@@ -27,22 +27,42 @@ function tab(id, el) {
 }
 
 // --- 3. SISTEMA DE DESCARGAS GLOBALES (FIREBASE) ---
-function upd(id) {
+// --- 3. SISTEMA DE DESCARGAS GLOBALES (FIREBASE CORREGIDO) ---
+function descargar(id) {
     const ref = db.ref('descargas/' + id);
     
+    // Sumar 1 en la base de datos de Firebase
     ref.transaction((currentValue) => {
         return (currentValue || 0) + 1;
     });
 
-    const counterSpan = document.getElementById(id);
+    // Efecto visual de "brillo" en la tarjeta al descargar
+    const counterSpan = document.getElementById('count_' + id);
     if(counterSpan) {
-        const card = counterSpan.closest('.card');
-        card.style.transition = "0.3s";
-        card.style.boxShadow = "0 0 30px var(--secondary)";
-        setTimeout(() => { card.style.boxShadow = "none"; }, 400);
+        const card = counterSpan.closest('.card-aporte') || counterSpan.closest('.card');
+        if(card) {
+            card.style.transition = "0.3s";
+            card.style.boxShadow = "0 0 30px #ffffff"; // Brillo blanco
+            setTimeout(() => { card.style.boxShadow = "none"; }, 400);
+        }
     }
 }
 
+// Escuchar cambios en tiempo real desde Firebase
+db.ref('descargas').on('value', (snapshot) => {
+    const data = snapshot.val() || {};
+    
+    Object.keys(data).forEach(id => {
+        // Buscamos el ID con el prefijo 'count_' que pusimos en el HTML
+        const span = document.getElementById('count_' + id);
+        if (span) {
+            span.innerText = data[id];
+        }
+    });
+    
+    // Actualizar los tops automáticamente
+    renderTopsFirebase(data);
+});
 db.ref('descargas').on('value', (snapshot) => {
     const data = snapshot.val() || {};
     
@@ -57,21 +77,27 @@ db.ref('descargas').on('value', (snapshot) => {
 });
 
 // --- 4. RENDERIZADO DE TOPS (FIREBASE) ---
+// --- 4. RENDERIZADO DE TOPS (FIREBASE ACTUALIZADO) ---
 function renderTopsFirebase(globalData) {
     function build(cardSelector, targetContainerId) {
         const container = document.getElementById(targetContainerId);
         if (!container) return;
 
+        // Buscamos las tarjetas originales en las secciones de Aportes y Datas
         const originalCards = Array.from(document.querySelectorAll(`.page-content:not([id^="top"]) ${cardSelector}`));
         
         const sorted = originalCards.map(card => {
-            const spanId = card.querySelector('.download-badge span').id;
+            // Extraemos el ID del mod desde el ID del contador (ej: count_mod_01 -> mod_01)
+            const span = card.querySelector('.counter');
+            if(!span) return null;
+            
+            const spanId = span.id.replace('count_', '');
             const dls = globalData[spanId] || 0;
             return { element: card, dls: dls };
         })
-        .filter(item => item.dls > 0)
+        .filter(item => item !== null && item.dls > 0)
         .sort((a, b) => b.dls - a.dls)
-        .slice(0, 3);
+        .slice(0, 3); // Solo los 3 mejores
 
         container.innerHTML = '';
 
@@ -82,23 +108,26 @@ function renderTopsFirebase(globalData) {
         
         sorted.forEach((item, index) => {
             const clone = item.element.cloneNode(true);
-            const spanInClone = clone.querySelector('.download-badge span');
-            spanInClone.innerText = item.dls;
+            
+            // Actualizar el contador en el clon
+            const spanInClone = clone.querySelector('.counter');
+            if(spanInClone) spanInClone.innerText = item.dls;
 
+            // Estilo especial para el #1 (El Rey del Top)
             if(index === 0) {
-                clone.style.border = "1px solid var(--secondary)";
-                clone.style.background = "rgba(0, 242, 255, 0.05)";
-                const title = clone.querySelector('.value');
+                clone.style.border = "2px solid #ffffff";
+                clone.style.boxShadow = "0 0 20px rgba(255, 255, 255, 0.2)";
+                const title = clone.querySelector('.aporte-titulo');
                 if(title) title.innerHTML = "👑 " + title.innerHTML;
             }
             container.appendChild(clone);
         });
     }
 
-    build('.aporte-card', 'cont-top-a');
-    build('.data-card', 'cont-top-d');
+    // Llamamos a la función con tus nuevas clases de tarjetas
+    build('.card-aporte', 'cont-top-a');
+    build('.card-data', 'cont-top-d');
 }
-
 // --- 5. SISTEMA DE MÚSICA ---
 const audio = document.getElementById('bg-audio');
 const musicBtn = document.getElementById('btn-music');

@@ -281,3 +281,51 @@ main { flex: 1; padding: 40px; overflow-y: auto; }
     box-shadow: 0 0 15px #fff;
     transform: scale(1.02);
 }
+
+/* Estilo para los comandos e información extra */
+.info-block {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.info-block .label {
+    display: block;
+    font-size: 9px;
+    color: var(--secondary);
+    margin-bottom: 3px;
+}
+
+.info-block .value-text {
+    font-size: 11px;
+    color: #ddd;
+    line-height: 1.4;
+}
+
+.comando-text {
+    font-family: 'Courier New', monospace;
+    color: #fff;
+    background: #111;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 10px;
+}
+
+.aporte-titulo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;      /* Tamaño grande */
+    font-weight: 900;       /* Muy negrita */
+    color: #ffffff;         /* Blanco puro */
+    text-transform: uppercase; /* Todo en mayúsculas para que se vea más rudo */
+    margin-bottom: 12px;    /* Espacio con lo de abajo */
+    letter-spacing: 1px;    /* Espaciado entre letras futurista */
+    border-left: 3px solid #fff; /* Una pequeña línea blanca al lado para estilo */
+    padding-left: 10px;
+}
+
+/* Efecto cuando pasas el mouse por la tarjeta */
+.card-aporte:hover .aporte-titulo {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Brillo blanco al nombre */
+}
