@@ -37,7 +37,7 @@ body {
     background-color: var(--bg-deep);
     background-image: 
         /* Capa superior: El parpadeo del relámpago (se anima) */
-        url('fondo_rayos.webp'), 
+        url('https://w7.pngwing.com/pngs/271/762/png-transparent-lightning-illustration-lightning-strike-thunderstorm-sky-lightning-blue-cloud-computer-wallpaper.png'), 
         /* Capa media: Oscurecimiento para que no brille tanto el fondo */
         linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
         /* Capa base: Tu fondo gótico original */
