@@ -20,73 +20,78 @@
 
 
 
-/* --- EFECTO DE RELÁMPAGOS DINÁMICOS PARA EL FONDO --- */
+/* --- NUEVA ANIMACIÓN DE RELÁMPAGOS INTENSOS --- */
 
-/* 1. Modificamos el body para que parpadee */
 body {
-    /* Mantenemos tu configuración actual... */
+    /* Mantenemos tu configuración base... */
     margin: 0; 
-    background-color: var(--bg-deep); 
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), var(--bg-horror);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-position: center;
-    background-attachment: fixed;
     color: #f0f0f0; 
     font-family: 'Orbitron', sans-serif; 
     height: 100vh; 
     display: flex; 
-    overflow: hidden; 
+    overflow: hidden;
+
+    /* 1. ACTUALIZAMOS LA IMAGEN DE FONDO */
+    /* Usamos tu fondo actual gótico Y la nueva imagen con rayos superpuesta */
+    /* Asegúrate de tener el archivo 'fondo_rayos.webp' en la carpeta */
+    background-color: var(--bg-deep);
+    background-image: 
+        /* Capa superior: El parpadeo del relámpago (se anima) */
+        url('fondo_rayos.webp'), 
+        /* Capa media: Oscurecimiento para que no brille tanto el fondo */
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+        /* Capa base: Tu fondo gótico original */
+        var(--bg-horror);
     
-    /* 2. AÑADIMOS LA ANIMACIÓN DE RELÁMPAGOS */
-    /* Explicación: Nombre_Animación | Duración (10s) | Intervalo (infinite) */
-    animation: lightning-strike 10s infinite; 
+    background-repeat: no-repeat;
+    background-size: cover, cover, cover; /* Cubre todo el fondo */
+    background-position: center;
+    background-attachment: fixed;
+    
+    /* 2. AÑADIMOS LA ANIMACIÓN DE PARPADEO INTENSO */
+    /* Nombre | Duración (7s para más frecuencia) | Intervalo (infinite) */
+    animation: intense-lightning-flash 7s infinite; 
 }
 
-/* 3. Definimos la animación con KEYFRAMES */
-@keyframes lightning-strike {
-    /* La mayor parte del tiempo (0% a 94%), el fondo es normal */
-    0%, 94% {
+/* 3. Definimos la animación de parpadeo violento */
+@keyframes intense-lightning-flash {
+    /* Estado normal (oscuro) la mayor parte del tiempo */
+    0%, 93%, 100% {
+        background-color: var(--bg-deep);
+        /* Usamos box-shadow para un "brillo de impacto" en los bordes */
+        box-shadow: none; 
+    }
+    
+    /* EL PARPADEO VIOLENTO (Simulación de impacto cercano) */
+    
+    /* Parpadeo 1 (Destello rápido inicial) */
+    94% {
+        background-color: rgba(0, 242, 255, 0.3); /* Brillo cian intenso de fondo */
+        box-shadow: inset 0 0 100px rgba(0, 242, 255, 0.5); /* Impacto en los bordes */
+    }
+    
+    /* Breve oscuridad */
+    94.5% {
         background-color: var(--bg-deep);
         box-shadow: none;
     }
     
-    /* EL PARPADEO DEL RELÁMPAGO (Simulación de 1 segundo) */
-    
+    /* Parpadeo 2 (El más fuerte) */
     95% {
-        /* Primer destello: iluminamos el fondo y el contorno */
-        background-color: rgba(255, 255, 255, 0.1); /* Iluminación blanca sutil de fondo */
-        box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.15); /* Brillo interior */
+        background-color: rgba(255, 255, 255, 0.6); /* Brillo blanco puro súper intenso */
+        box-shadow: inset 0 0 200px rgba(255, 255, 255, 0.7); /* Máximo impacto */
     }
     
+    /* Breve oscuridad */
+    95.5% {
+        background-color: var(--bg-deep);
+        box-shadow: none;
+    }
+    
+    /* Parpadeo 3 (Disipándose) */
     96% {
-        /* Pequeña pausa (oscuridad momentánea) */
-        background-color: var(--bg-deep);
-        box-shadow: none;
-    }
-    
-    97% {
-        /* Segundo destello (el más fuerte) */
-        background-color: rgba(255, 255, 255, 0.2);
-        box-shadow: inset 0 0 150px rgba(255, 255, 255, 0.25);
-    }
-    
-    98% {
-        /* Volvemos a la oscuridad */
-        background-color: var(--bg-deep);
-        box-shadow: none;
-    }
-    
-    99% {
-        /* Tercer destello (más débil, disipándose) */
-        background-color: rgba(255, 255, 255, 0.05);
-        box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.1);
-    }
-    
-    100% {
-        /* Regresamos al estado base */
-        background-color: var(--bg-deep);
-        box-shadow: none;
+        background-color: rgba(0, 242, 255, 0.2);
+        box-shadow: inset 0 0 50px rgba(0, 242, 255, 0.3);
     }
 }
 
