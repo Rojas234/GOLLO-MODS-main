@@ -156,202 +156,153 @@
         </div>
     </main>
 
-    <script>
-        // --- 1. CONFIGURACIÓN FIREBASE ---
-        const firebaseConfig = {
-            apiKey: "AIzaSyBpHDgoUtVnnG48j_jG2-QAm2AgEM5uvjc",
-            authDomain: "gollos-mods.firebaseapp.com",
-            databaseURL: "https://gollos-mods-default-rtdb.firebaseio.com", 
-            projectId: "gollos-mods",
-            storageBucket: "gollos-mods.firebasestorage.app",
-            messagingSenderId: "531411952451",
-            appId: "1:531411952451:web:8cbcdd4a2f9ea0fe3a05f6",
-            measurementId: "G-1567JZCS1Q"
-        };
+   <script>
+    // --- 1. CONFIGURACIÓN FIREBASE ---
+    const firebaseConfig = {
+        apiKey: "AIzaSyBpHDgoUtVnnG48j_jG2-QAm2AgEM5uvjc",
+        authDomain: "gollos-mods.firebaseapp.com",
+        databaseURL: "https://gollos-mods-default-rtdb.firebaseio.com", 
+        projectId: "gollos-mods",
+        storageBucket: "gollos-mods.firebasestorage.app",
+        messagingSenderId: "531411952451",
+        appId: "1:531411952451:web:8cbcdd4a2f9ea0fe3a05f6",
+        measurementId: "G-1567JZCS1Q"
+    };
 
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
-        // --- 2. NAVEGACIÓN ---
-        function tab(id, el) {
-            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-icon').forEach(n => n.classList.remove('active'));
-            const target = document.getElementById(id);
-            if(target) target.classList.add('active');
-            el.classList.add('active');
+    // --- 2. NAVEGACIÓN ---
+    function tab(id, el) {
+        document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-icon').forEach(n => n.classList.remove('active'));
+        const target = document.getElementById(id);
+        if(target) target.classList.add('active');
+        el.classList.add('active');
+    }
+
+    // --- 3. MÚSICA ---
+    const audio = document.getElementById('bg-audio');
+    const musicBtn = document.getElementById('btn-music');
+    const musicIcon = document.getElementById('music-icon');
+
+    function toggleMusic() {
+        if (audio.paused) {
+            audio.play();
+            musicIcon.innerText = "⏸";
+            musicBtn.style.background = "#888";
+        } else {
+            audio.pause();
+            musicIcon.innerText = "▶";
+            musicBtn.style.background = "var(--primary)";
         }
+    }
 
-        // --- 3. MÚSICA ---
-        const audio = document.getElementById('bg-audio');
-        const musicBtn = document.getElementById('btn-music');
-        const musicIcon = document.getElementById('music-icon');
+    // --- 4. SISTEMA DE DESCARGAS (FIREBASE) ---
+    function descargar(id) {
+        const ref = db.ref('descargas/' + id);
+        ref.transaction((current) => (current || 0) + 1);
+    }
 
-        function toggleMusic() {
-            if (audio.paused) {
-                audio.play();
-                musicIcon.innerText = "⏸";
-                musicBtn.style.background = "#888";
-            } else {
-                audio.pause();
-                musicIcon.innerText = "▶";
-                musicBtn.style.background = "var(--primary)";
-            }
-        }
-
-        // --- 4. SISTEMA DE DESCARGAS (FIREBASE) ---
-        function descargar(id) {
-            const ref = db.ref('descargas/' + id);
-            ref.transaction((current) => (current || 0) + 1);
-        }
-
-        // Sincronización en tiempo real
-        db.ref('descargas').on('value', (snapshot) => {
-            const data = snapshot.val() || {};
-            
-            // Actualizar contadores en las tarjetas
-            Object.keys(data).forEach(id => {
-                const el = document.getElementById('count_' + id);
-                if(el) el.innerText = data[id];
-            });
-
-            renderTopsGlobal(data);
+    // Sincronización en tiempo real
+    db.ref('descargas').on('value', (snapshot) => {
+        const data = snapshot.val() || {};
+        Object.keys(data).forEach(id => {
+            const el = document.getElementById('count_' + id);
+            if(el) el.innerText = data[id];
         });
+        renderTopsGlobal(data);
+    });
 
-        function renderTopsGlobal(globalData) {
-            function build(cardSelector, targetContainerId) {
-                const container = document.getElementById(targetContainerId);
-                if(!container) return;
-                
-                // Buscar tarjetas originales (excluyendo los tops para no duplicar)
-                const originalCards = Array.from(document.querySelectorAll('.page-content:not([id^="top"]) ' + cardSelector));
-                
-                const sorted = originalCards.map(card => {
-                    const span = card.querySelector('.counter');
-                    if(!span) return null;
-                    const spanId = span.id.replace('count_', '');
-                    const dls = globalData[spanId] || 0;
-                    return { element: card, dls: dls };
-                })
-                .filter(item => item && item.dls > 0)
-                .sort((a, b) => b.dls - a.dls)
-                .slice(0, 3);
+    // --- 5. LÓGICA DE TOPS ---
+    function renderTopsGlobal(globalData) {
+        buildTop('.card-aporte', 'cont-top-a', globalData);
+        buildTop('.card-data', 'cont-top-d', globalData);
+    }
 
-                container.innerHTML = sorted.length ? '' : '<p style="color:gray; font-family:Orbitron; text-align:center; width:100%; padding:20px;">Esperando datos globales...</p>';
+    function buildTop(cardSelector, targetContainerId, globalData) {
+        const container = document.getElementById(targetContainerId);
+        if(!container) return;
+        
+        const originalCards = Array.from(document.querySelectorAll('.page-content:not([id^="top"]) ' + cardSelector));
+        
+        const sorted = originalCards.map(card => {
+            const span = card.querySelector('.counter');
+            if(!span) return null;
+            const spanId = span.id.replace('count_', '');
+            const dls = globalData[spanId] || 0;
+            return { element: card, dls: dls };
+        })
+        .filter(item => item && item.dls > 0)
+        .sort((a, b) => b.dls - a.dls)
+        .slice(0, 3);
 
-                sorted.forEach((item, index) => {
-                    const clone = item.element.cloneNode(true);
-                    const counterInClone = clone.querySelector('.counter');
-                    if(counterInClone) counterInClone.innerText = item.dls;
+        container.innerHTML = sorted.length ? '' : '<p style="color:gray; font-family:Orbitron; text-align:center; width:100%; padding:20px;">Esperando datos globales...</p>';
 
-                    if(index === 0) {
-                        clone.style.boxShadow = "0 0 20px rgba(255, 255, 255, 0.2)";
-                        clone.style.borderColor = "#fff";
-                        const titulo = clone.querySelector('.aporte-titulo');
-                        if(titulo) titulo.prepend("👑 ");
-                    }
-                    container.appendChild(clone);
-                });
+        sorted.forEach((item, index) => {
+            const clone = item.element.cloneNode(true);
+            const counterInClone = clone.querySelector('.counter');
+            if(counterInClone) counterInClone.innerText = item.dls;
+
+            if(index === 0) {
+                clone.style.boxShadow = "0 0 20px rgba(255, 255, 255, 0.2)";
+                clone.style.borderColor = "#fff";
+                const titulo = clone.querySelector('.aporte-titulo');
+                if(titulo) titulo.prepend("👑 ");
             }
-           
-
-            // --- EFECTO: RASTRO DEL MOUSE (PARTÍCULAS DE LUZ) ---
-document.addEventListener('mousemove', function(e) {
-    // Creamos 3 partículas por cada movimiento para que se vea más tupido
-    for (let i = 0; i < 3; i++) {
-        createParticle(e.pageX, e.pageY);
+            container.appendChild(clone);
+        });
     }
-});
 
-function createParticle(x, y) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    
-    // Posición inicial (con un ligero desplazamiento aleatorio)
-    particle.style.left = (x + (Math.random() - 0.5) * 10) + 'px';
-    particle.style.top = (y + (Math.random() - 0.5) * 10) + 'px';
-    
-    // Tamaño aleatorio para que se vea más natural
-    const size = Math.random() * 8 + 4; // Entre 4px y 12px
-    particle.style.width = size + 'px';
-    particle.style.height = size + 'px';
-    
-    // Añadimos al body
-    document.body.appendChild(particle);
-    
-    // Velocidad y dirección de movimiento aleatoria
-    const destinationX = (Math.random() - 0.5) * 60;
-    const destinationY = (Math.random() - 0.5) * 60;
-    
-    // Animación con CSS Keyframes
-    particle.style.animation = `particleFade 0.8s ease-out forwards`;
-    
-    // Movemos la partícula
-    particle.style.transform = `translate(${destinationX}px, ${destinationY}px)`;
-    
-    // Borramos la partícula después de la animación para no saturar la PC
-    setTimeout(() => {
-        particle.remove();
-    }, 800);
-}
+    // --- 6. EFECTOS VISUALES (FUERA DE OTRAS FUNCIONES) ---
+    document.addEventListener('mousemove', function(e) {
+        for (let i = 0; i < 2; i++) { createParticle(e.pageX, e.pageY); }
+    });
 
-// --- EFECTO: LLUVIA DE CÓDIGO DE MODDING ---
-function createCodeRain() {
-    const rain = document.createElement('div');
-    rain.className = 'code-rain';
-    
-    // Caracteres aleatorios que simulan código (hex, comandos)
-    const chars = '0123456789ABCDEF/<>_[]*{}|#!+-$';
-    const textLength = Math.random() * 15 + 10; // Longitud del fragmento
-    let text = '';
-    for (let i = 0; i < textLength; i++) {
-        text += chars[Math.floor(Math.random() * chars.length)];
+    function createParticle(x, y) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = x + 'px';
+        particle.style.top = y + 'px';
+        const size = Math.random() * 8 + 4;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        document.body.appendChild(particle);
+        
+        const destinationX = (Math.random() - 0.5) * 60;
+        const destinationY = (Math.random() - 0.5) * 60;
+        particle.style.animation = `particleFade 0.8s ease-out forwards`;
+        particle.style.transform = `translate(${destinationX}px, ${destinationY}px)`;
+        setTimeout(() => { particle.remove(); }, 800);
     }
-    
-    rain.innerText = text;
-    
-    // Posición horizontal aleatoria
-    rain.style.left = Math.random() * 100 + 'vw';
-    
-    // Velocidad de caída aleatoria (más rápido para que sea agresivo)
-    const duration = Math.random() * 1.5 + 1; // Entre 1s y 2.5s
-    rain.style.animation = `codeRainFall ${duration}s linear forwards`;
-    
-    document.body.appendChild(rain);
-    
-    // Borrar después de caer
-    setTimeout(() => {
-        rain.remove();
-    }, duration * 1000);
-}
 
-// Crear lluvia constantemente (cada 150ms para que sea densa)
-setInterval(createCodeRain, 150);
+    function createCodeRain() {
+        const rain = document.createElement('div');
+        rain.className = 'code-rain';
+        const chars = '0123456789ABCDEF/<>_[]*{}|#!+-$';
+        let text = '';
+        for (let i = 0; i < 15; i++) { text += chars[Math.floor(Math.random() * chars.length)]; }
+        rain.innerText = text;
+        rain.style.left = Math.random() * 100 + 'vw';
+        const duration = Math.random() * 1.5 + 1;
+        rain.style.animation = `codeRainFall ${duration}s linear forwards`;
+        document.body.appendChild(rain);
+        setTimeout(() => { rain.remove(); }, duration * 1000);
+    }
+    setInterval(createCodeRain, 150);
 
-// --- EFECTO: GLITCH ESTÁTICO ALEATORIO ---
-function triggerGlitch() {
-    // Solo activamos el glitch el 5% de las veces que se llama
-    if (Math.random() > 0.05) return;
-    
-    const glitchOverlay = document.createElement('div');
-    glitchOverlay.className = 'glitch-overlay';
-    document.body.appendChild(glitchOverlay);
-    
-    // Aplicamos una distorsión rápida con CSS transform
-    document.body.style.transform = `translate(${(Math.random()-0.5)*20}px, ${(Math.random()-0.5)*20}px) scale(1.01)`;
-    
-    // Borramos el glitch después de un instante
-    setTimeout(() => {
-        glitchOverlay.remove();
-        document.body.style.transform = 'translate(0,0) scale(1)'; // Regresamos a la normalidad
-    }, 150); // Muy rápido
-}
-
-// Llamamos a la función constantemente, pero solo se activa a veces
-setInterval(triggerGlitch, 500);
-        }
-{ build('.card-aporte', 'cont-top-a');
-            build('.card-data', 'cont-top-d');}
-         
-    </script>
+    function triggerGlitch() {
+        if (Math.random() > 0.05) return;
+        const glitchOverlay = document.createElement('div');
+        glitchOverlay.className = 'glitch-overlay';
+        document.body.appendChild(glitchOverlay);
+        document.body.style.transform = `translate(${(Math.random()-0.5)*10}px, ${(Math.random()-0.5)*10}px)`;
+        setTimeout(() => {
+            glitchOverlay.remove();
+            document.body.style.transform = 'translate(0,0)';
+        }, 100);
+    }
+    setInterval(triggerGlitch, 500);
+</script>
 </body>
 </html>
