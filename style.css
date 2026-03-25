@@ -714,6 +714,7 @@ body::before {
     animation: lightning 8s infinite;
 }
 
+/* --- EFECTO DE SCANLINES (MONITOR ANTIGUO) --- */
 body::after {
     content: "";
     position: fixed;
@@ -721,19 +722,27 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
+    
+    /* Creamos líneas negras horizontales muy finas */
     background: linear-gradient(
         rgba(18, 16, 16, 0) 50%, 
-        rgba(0, 0, 0, 0.1) 50%
-    ), linear-gradient(
-        90deg, 
-        rgba(255, 0, 0, 0.03), 
-        rgba(0, 255, 0, 0.01), 
-        rgba(0, 0, 255, 0.03)
+        rgba(0, 0, 0, 0.3) 50%
     );
-    background-size: 100% 4px, 3px 100%;
-    z-index: 9998;
-    pointer-events: none;
-    opacity: 0.3;
+    background-size: 100% 4px; /* Tamaño de las líneas */
+    
+    z-index: 9999; /* Por encima de todo */
+    pointer-events: none; /* Importante: para que puedas hacer clic en lo que hay debajo */
+    opacity: 0.5; /* Subimos la opacidad para que se note */
+    
+    /* Añadimos un parpadeo muy leve para que parezca real */
+    animation: flicker 0.15s infinite;
+}
+
+/* Animación de parpadeo de pantalla vieja */
+@keyframes flicker {
+    0% { opacity: 0.45; }
+    50% { opacity: 0.55; }
+    100% { opacity: 0.45; }
 }
 
 .card-aporte:hover, .card:hover, .card-data:hover {
