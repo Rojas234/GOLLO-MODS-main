@@ -252,8 +252,7 @@
                     container.appendChild(clone);
                 });
             }
-            build('.card-aporte', 'cont-top-a');
-            build('.card-data', 'cont-top-d');
+           
 
             // --- EFECTO: RASTRO DEL MOUSE (PARTÍCULAS DE LUZ) ---
 document.addEventListener('mousemove', function(e) {
@@ -350,6 +349,9 @@ function triggerGlitch() {
 // Llamamos a la función constantemente, pero solo se activa a veces
 setInterval(triggerGlitch, 500);
         }
+{ build('.card-aporte', 'cont-top-a');
+            build('.card-data', 'cont-top-d');}
+         
     </script>
 </body>
 </html>
