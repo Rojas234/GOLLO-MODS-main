@@ -222,6 +222,101 @@
             }
             build('.card-aporte', 'cont-top-a');
             build('.card-data', 'cont-top-d');
+
+            // --- EFECTO: RASTRO DEL MOUSE (PARTÍCULAS DE LUZ) ---
+document.addEventListener('mousemove', function(e) {
+    // Creamos 3 partículas por cada movimiento para que se vea más tupido
+    for (let i = 0; i < 3; i++) {
+        createParticle(e.pageX, e.pageY);
+    }
+});
+
+function createParticle(x, y) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    
+    // Posición inicial (con un ligero desplazamiento aleatorio)
+    particle.style.left = (x + (Math.random() - 0.5) * 10) + 'px';
+    particle.style.top = (y + (Math.random() - 0.5) * 10) + 'px';
+    
+    // Tamaño aleatorio para que se vea más natural
+    const size = Math.random() * 8 + 4; // Entre 4px y 12px
+    particle.style.width = size + 'px';
+    particle.style.height = size + 'px';
+    
+    // Añadimos al body
+    document.body.appendChild(particle);
+    
+    // Velocidad y dirección de movimiento aleatoria
+    const destinationX = (Math.random() - 0.5) * 60;
+    const destinationY = (Math.random() - 0.5) * 60;
+    
+    // Animación con CSS Keyframes
+    particle.style.animation = `particleFade 0.8s ease-out forwards`;
+    
+    // Movemos la partícula
+    particle.style.transform = `translate(${destinationX}px, ${destinationY}px)`;
+    
+    // Borramos la partícula después de la animación para no saturar la PC
+    setTimeout(() => {
+        particle.remove();
+    }, 800);
+}
+
+// --- EFECTO: LLUVIA DE CÓDIGO DE MODDING ---
+function createCodeRain() {
+    const rain = document.createElement('div');
+    rain.className = 'code-rain';
+    
+    // Caracteres aleatorios que simulan código (hex, comandos)
+    const chars = '0123456789ABCDEF/<>_[]*{}|#!+-$';
+    const textLength = Math.random() * 15 + 10; // Longitud del fragmento
+    let text = '';
+    for (let i = 0; i < textLength; i++) {
+        text += chars[Math.floor(Math.random() * chars.length)];
+    }
+    
+    rain.innerText = text;
+    
+    // Posición horizontal aleatoria
+    rain.style.left = Math.random() * 100 + 'vw';
+    
+    // Velocidad de caída aleatoria (más rápido para que sea agresivo)
+    const duration = Math.random() * 1.5 + 1; // Entre 1s y 2.5s
+    rain.style.animation = `codeRainFall ${duration}s linear forwards`;
+    
+    document.body.appendChild(rain);
+    
+    // Borrar después de caer
+    setTimeout(() => {
+        rain.remove();
+    }, duration * 1000);
+}
+
+// Crear lluvia constantemente (cada 150ms para que sea densa)
+setInterval(createCodeRain, 150);
+
+// --- EFECTO: GLITCH ESTÁTICO ALEATORIO ---
+function triggerGlitch() {
+    // Solo activamos el glitch el 5% de las veces que se llama
+    if (Math.random() > 0.05) return;
+    
+    const glitchOverlay = document.createElement('div');
+    glitchOverlay.className = 'glitch-overlay';
+    document.body.appendChild(glitchOverlay);
+    
+    // Aplicamos una distorsión rápida con CSS transform
+    document.body.style.transform = `translate(${(Math.random()-0.5)*20}px, ${(Math.random()-0.5)*20}px) scale(1.01)`;
+    
+    // Borramos el glitch después de un instante
+    setTimeout(() => {
+        glitchOverlay.remove();
+        document.body.style.transform = 'translate(0,0) scale(1)'; // Regresamos a la normalidad
+    }, 150); // Muy rápido
+}
+
+// Llamamos a la función constantemente, pero solo se activa a veces
+setInterval(triggerGlitch, 500);
         }
     </script>
 </body>
