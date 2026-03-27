@@ -171,3 +171,10 @@ window.onfocus = () => { document.title = "GOLLO MODS | Comunidad Aportes"; };
 window.onload = () => {
     console.log("Gollo Mods cargado con éxito. Icono actualizado.");
 };
+
+// CUIDADO: Esto borra TODO en la base de datos de descargas
+function reiniciarTodo() {
+    if(confirm("¿Seguro que quieres resetear todas las descargas a 0?")) {
+        db.ref('descargas').remove();
+    }
+}
